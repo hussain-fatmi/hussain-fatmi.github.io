@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hussain Fatmi | Software Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0f172a;
+      --bg-light: #111827;
+      --card: rgba(255,255,255,0.06);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --primary: #38bdf8;
+      --border: rgba(255,255,255,0.1);
+      --shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(2, 6, 23, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.4rem;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .code-window {
+      background: #020617;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .code-header {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      background: #111827;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #f59e0b; }
+    .dot.green { background: #22c55e; }
+
+    pre {
+      padding: 1.5rem;
+      overflow-x: auto;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-title span {
+      color: var(--primary);
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.8rem;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56,189,248,0.4);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    /* PROJECTS */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .project-card:hover {
+      cursor: pointer;
+      transform: translateY(-6px);
+    }
+
+    .project-image {
+      height: 180px;
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content h3 {
+      margin-bottom: 0.6rem;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      background: rgba(56,189,248,0.12);
+      color: var(--primary);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill {
+      padding: 0.9rem 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      font-weight: 500;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      text-align: center;
+      padding: 3rem;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin: 1rem auto 2rem;
+      max-width: 700px;
+    }
+
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">Hussain Fatmi</div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <div class="hero-text">
+        <h1>
+          Full Stack
+          <br />
+          <span>Software Developer</span>
+        </h1>
+
+        <p>
+          I design and develop scalable web applications, APIs, and cloud-native
+          systems with a strong focus on performance, usability, and clean code.
+        </p>
+        <p>
+          3+ years of experience building scalable SaaS platforms, AI-powered systems, and cloud-native applications.
+          Specialized in Angular, microservices architecture, REST APIs, and
+          RAG-based AI solutions deployed on Google Cloud Platform.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+          </div>
+
+<pre><code>const engineer = {
+  name: "Hussain Fatmi",
+  role: "Full Stack Software Developer",
+  skills: [
+    "Java",
+    "Python",
+    "HTML",
+    "JavaScript",
+    "TypeScript",
+    "CSS",
+    "Angular",
+    "Vue",
+    "React",
+    "Node.js",
+    "Python",
+    "GCP",
+    "MySQL",
+    "Git"
+  ],
+
+  passionateAbout: [
+    "Scalable Systems",
+    "AI Applications",
+    "Developer Experience"
+  ]
+};</code></pre>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">About <span>Me</span></h2>
+
+      <div class="about-grid">
+
+        <div class="card">
+          <h3>Frontend Development</h3>
+          <p>
+            Building responsive and interactive interfaces using modern
+            frameworks like React, Next.js, and Tailwind CSS.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Backend Engineering</h3>
+          <p>
+            Designing APIs, authentication systems, databases, and scalable
+            server-side architectures.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Cloud & DevOps</h3>
+          <p>
+            Deploying production-ready systems with Docker, AWS, CI/CD pipelines,
+            and monitoring tools.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+
+      <h2 class="section-title">Featured <span>Projects</span></h2>
+
+      <div class="projects-grid">
+
+        <div class="project-card" onclick="window.open('https://cookbook-one-orpin.vercel.app/', '_blank')">
+          <div class="project-image"><img src="imgs/cookbook.jpg" alt="Cookbook Project"></div>
+
+          <div class="project-content">
+            <h3>Cookbook</h3>
+
+            <p>
+              Save recipes, plan weekly menus and generate shopping lists using proprietary algorithms.
+              Smart meal planning to optimize meal scheduling, reduce grocery waste, and simplify meal
+              preparation through an intuitive and user-friendly interface.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Vue</span>
+              <span class="tag">Javascript</span>
+              <span class="tag">HTML</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">🔥</div>
+
+          <div class="project-content">
+            <h3>Restaurant Tinder</h3>
+
+            <p>
+              Swipe left and right on restaurants nearby and match to decide where to eat.
+              Stay tuned for lunch ... *launch*
+            </p>
+
+            <div class="tags">
+              <span class="tag">Vue</span>
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">🎮</div>
+
+          <div class="project-content">
+            <h3>Coming Soon</h3>
+
+            <p>
+              Something exciting is in the works — stay tuned. Get your controllers ready.
+            </p>
+
+            <div class="tags">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+
+      <div class="skills">
+        <div class="skill">Java</div>
+        <div class="skill">Python</div>
+        <div class="skill">HTML</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">TypeScript</div>
+        <div class="skill">CSS</div>
+        <div class="skill">Angular</div>
+        <div class="skill">React</div>
+        <div class="skill">Vue</div>
+        <div class="skill">Next.js</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">GCP</div>
+        <div class="skill">Docker</div>
+        <div class="skill">MySQL</div>
+        <div class="skill">Firebase</div>
+        <div class="skill">GraphQL</div>
+        <div class="skill">Git</div>
+        <div class="skill">Figma</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+
+      <div class="contact-box">
+        <h2 class="section-title">Let's Build Something <span>Together</span></h2>
+
+        <p>
+          I'm currently open to software engineering opportunities,
+          freelance projects, and collaborations.
+        </p>
+
+        <div class="hero-buttons" style="justify-content:center;">
+          <a href="mailto:hadifatmi@gmail.com" class="btn btn-primary">
+            Email Me
+          </a>
+
+          <a href="https://github.com/hussain-fatmi" target="_blank" class="btn btn-secondary">
+            GitHub
+          </a>
+
+          <a href="https://www.linkedin.com/in/hussain-fatmi" target="_blank" class="btn btn-secondary">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      © 2026 Hussain Fatmi. Built with HTML & CSS.
+    </div>
+  </footer>
+
+</body>
+</html>
